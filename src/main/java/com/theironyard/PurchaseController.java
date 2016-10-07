@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -25,7 +26,7 @@ public class PurchaseController {
     PurchaseRepository purchases;
 
     @PostConstruct
-    public void init()throws FileNotFoundException{
+    public void init() throws FileNotFoundException {
 
         if (customers.count() == 0) {
             readCustomerFile();
@@ -37,7 +38,17 @@ public class PurchaseController {
 
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String home(HttpSession session, Model model) {
+    public String home(HttpSession session, Model model, String category) {
+
+        ArrayList<Purchase> purchaseList;
+
+        if (category != null) {
+            purchaseList = (ArrayList) purchases.findAllByCategory(category);
+        } else {
+            purchaseList = (ArrayList<Purchase>) purchases.findAll();
+        }
+
+        model.addAttribute("purchases", purchaseList);
 
         return "home";
     }
@@ -66,7 +77,7 @@ public class PurchaseController {
             line = fileScanner.nextLine();
             String[] columns = line.split(",");
             Customer customer = customers.findById(Integer.parseInt(columns[0]));
-            Purchase purchase = new Purchase(columns[1],columns[2], columns[3], columns[4], customer);
+            Purchase purchase = new Purchase(columns[1], columns[2], columns[3], columns[4], customer);
 
             purchases.save(purchase);
         }
