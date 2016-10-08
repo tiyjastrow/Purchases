@@ -32,7 +32,7 @@ public class PurchaseTrackerController {
         if (purchases.count() == 0){
             while(purchaseScan.hasNext()){
                 String line = purchaseScan.nextLine();
-                while(line.startsWith("customer_id,date,credit_card,cvv,category")){
+                while(line.startsWith("customer_id")){
                     line = purchaseScan.nextLine();
                 }
                 String[] columns = line.split(",");
@@ -40,6 +40,7 @@ public class PurchaseTrackerController {
                 purchases.save(purchase);
             }
         }
+        purchaseScan.close();
     }
 
     private void parseCustomers() throws FileNotFoundException {
@@ -48,7 +49,7 @@ public class PurchaseTrackerController {
         if (customers.count() == 0){
             while(customerScan.hasNext()){
                 String line = customerScan.nextLine();
-                while (line.startsWith("name,email")){
+                while (line.startsWith("name")){
                     line = customerScan.nextLine();
                 }
                 String[] columns = line.split(",");
@@ -56,6 +57,7 @@ public class PurchaseTrackerController {
                 customers.save(customer);
             }
         }
+        customerScan.close();
     }
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
