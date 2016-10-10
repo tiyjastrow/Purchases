@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HOME</title>
+</head>
+<body>
+<form action="/" method="get">
+    <select name="filter">
+        <option selected disabled>Filter</option>
+        <option value="Furniture">Furniture</option>
+        <option value="Alcohol">Alcohol</option>
+        <option value="Toiletries">Toiletries</option>
+        <option value="Shoes">Shoes</option>
+        <option value="Food">Food</option>
+        <option value="Jewelry">Jewelry</option>
+    </select>
+    <button type="submit">Filter</button>
+</form>
+<table style="width:100%">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Category</th>
+        <th>Credit Number</th>
+        <th>CVV</th>
+        <th>Date</th>
+    </tr>
+    {{#purchases}}
+    <tr>
+        <td>{{customer.name}}</td>
+        <td>{{customer.email}}</td>
+        <td>{{category}}</td>
+        <td>{{credit_card}}</td>
+        <td>{{cvv}}</td>
+        <td>{{date}}</td>
+    </tr>
+    {{/purchases}}
+</table>
+
+</body>
+</html>
+name email category cc cvv date
