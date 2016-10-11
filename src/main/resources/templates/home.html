@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HomePageOfGlory</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+<div>Filter Results:&nbsp
+    <select>
+        
+    </select>
+    <a href="/">ALL</a>&nbsp|&nbsp
+    <a href="/?category=Alcohol">Alcohol</a>&nbsp|&nbsp
+    <a href="/?category=Furniture">Furniture</a>&nbsp|&nbsp
+    <a href="/?category=Toiletries">Toiletries</a>&nbsp|&nbsp
+    <a href="/?category=Shoes">Shoes</a>&nbsp|&nbsp
+    <a href="/?category=Food">Food</a>&nbsp|&nbsp
+    <a href="/?category=Jewelry">Jewelry</a>
+</div>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Category</th>
+        <th>Credit Card</th>
+        <th>CVV</th>
+        <th>Date</th>
+    </tr>
+    {{#purchases}}
+    <tr>
+        <td>{{customer.name}}</td>
+        <td>{{customer.email}}</td>
+        <td>{{category}}</td>
+        <td>{{creditCard}}</td>
+        <td>{{cvv}}</td>
+        <td>{{date}}</td>
+    </tr>
+    {{/purchases}}
+</table>
+
+</body>
+</html>
