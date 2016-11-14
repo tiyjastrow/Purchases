@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ public class PurchasesController {
     @PostConstruct
     public void init() throws FileNotFoundException {
         if (customers.count() == 0) {
-            File f = new File("/Users/EdHall/workspace/Purchases/src/99c8adfe-customers.csv");
+            File f = new File("6f448979-purchases.csv");
             Scanner fileScanner = new Scanner(f);
 
             while (fileScanner.hasNext()) {
@@ -40,7 +39,7 @@ public class PurchasesController {
         }
 
         if (purchases.count() == 0) {
-            File f = new File("/Users/EdHall/workspace/Purchases/src/6f448979-purchases.csv");
+            File f = new File("6f448979-purchases.csv");
             Scanner fileScanner = new Scanner(f);
 
             while (fileScanner.hasNext()) {
