@@ -27,7 +27,7 @@ public class PurchasesController {
     @PostConstruct
     public void init() throws FileNotFoundException {
         if (customers.count() == 0) {
-            File f = new File("6f448979-purchases.csv");
+            File f = new File("99c8adfe-customers.csv");
             Scanner fileScanner = new Scanner(f);
 
             while (fileScanner.hasNext()) {
