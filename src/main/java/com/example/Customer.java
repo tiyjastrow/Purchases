@@ -9,8 +9,10 @@ public class Customer {
     @Id
     @GeneratedValue
     int id;
+
     @Column(nullable = false)
     String name;
+
     @Column(nullable = false)
     String email;
 
@@ -19,4 +21,5 @@ public class Customer {
         this.name = name;
         this.email = email;
     }
+    public Customer(){}
 }

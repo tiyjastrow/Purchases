@@ -11,28 +11,25 @@ public class Purchase {
     int id;
 
     @Column(nullable = false)
-    int customer_id;
-
-    @Column(nullable = false)
     String date;
 
     @Column(nullable = false)
-    String credit_card;
+    String creditCard;
 
     @Column(nullable = false)
     int cvv;
 
     @Column(nullable = false)
-    int category;
+    String category;
 
     @ManyToOne
     Customer customer;
 
+    public Purchase(){}
 
-    public Purchase(int customer_id, String date, String credit_card, int cvv, int category, Customer customer) {
-        this.customer_id = customer_id;
+    public Purchase(String date, String creditCard, int cvv, String category, Customer customer) {
         this.date = date;
-        this.credit_card = credit_card;
+        this.creditCard = creditCard;
         this.cvv = cvv;
         this.category = category;
         this.customer = customer;
