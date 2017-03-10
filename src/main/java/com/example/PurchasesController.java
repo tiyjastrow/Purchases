@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Scanner;
 
 @Controller
@@ -66,8 +67,14 @@ public class PurchasesController {
 
 
     @RequestMapping(value ="/", method = RequestMethod.GET)
-    public String home(Model model){
-        model.addAttribute("purchases", purchases.findAll());
+    public String home(Model model, String category){
+        List<Purchase> purchList;
+        if(category == null){
+            purchList = (List)purchases.findAll();
+        } else {
+            purchList = purchases.findByCategory(category);
+        }
+        model.addAttribute("purchases", purchList );
         return "home";
     }
 
