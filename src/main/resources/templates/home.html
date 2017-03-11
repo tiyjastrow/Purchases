@@ -6,19 +6,53 @@
 </head>
 <body>
 
-{{^user}}
-    <form action="/login" method="post">
-        <input type="text" placeholder="Enter your username" name="userName" required>
-        <input type="password" placeholder="Password" name="password" required>
-        <button type="submit">Login</button>
-    </form><br><br>
-{{/user}}
+<!--{{^user}}-->
+    <!--<form action="/login" method="post">-->
+        <!--<input type="text" placeholder="Enter your username" name="userName" required>-->
+        <!--<input type="password" placeholder="Password" name="password" required>-->
+        <!--<button type="submit">Login</button>-->
+    <!--</form><br><br>-->
+<!--{{/user}}-->
 
-{{#user}}
+<!--{{#user}}-->
 
-    Welcome, {{name}}!
+    <!--Welcome, {{name}}!-->
 
-{{/user}}
+<!--{{/user}}-->
+
+<form action="/" method="get">
+    Find by category:
+    <select name="categoryLimit">
+        <option selected>All</option>
+        {{#categories}}
+        <option>{{.}}</option>
+        {{/categories}}
+    </select>
+    <button type="submit">Find</button>
+</form>
+
+<table>
+    <tr>
+        <th><a href="/?sortField=name{{#name}}&order=desc{{/name}}">Name</a></th>
+        <th><a href="/?sortField=email{{#email}}&order=desc{{/email}}">Email</a></th>
+        <th><a href="/?sortField=category{{#category}}&order=desc{{/category}}">Category</a></th>
+        <th><a href="/?sortField=creditCard{{#creditCard}}&order=desc{{/creditCard}}">Credit Card</a></th>
+        <th><a href="/?sortField=cvv{{#cvv}}&order=desc{{/cvv}}">CVV</a></th>
+        <th><a href="/?sortField=date{{#date}}&order=desc{{/date}}">Date</a></th>
+    </tr>
+    {{#purchases}}
+    <tr>
+        {{#customer}}
+        <td>{{name}}</td>
+        <td>{{email}}</td>
+        {{/customer}}
+        <td>{{category}}</td>
+        <td>{{creditCard}}</td>
+        <td>{{cvv}}</td>
+        <td>{{date}}</td>
+    </tr>
+    {{/purchases}}
+</table>
 
 </body>
 </html>
