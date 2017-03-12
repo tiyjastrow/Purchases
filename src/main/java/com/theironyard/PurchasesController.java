@@ -34,26 +34,41 @@ public class PurchasesController {
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String home(Model model, String categoryLimit, String sortField, String order) {
         List<Purchase> purchaseList;
+        Sort sort = null;
+        if (sortField != null && !sortField.isEmpty()) {
+            sort = getSort(model, sortField, order);
+        }
+
         if (categoryLimit != null && !categoryLimit.equals("All")) {
-            purchaseList = purchases.findByCategory(categoryLimit);
-        }
-        else if (sortField != null){
-            Sort sort;
-            if (order != null && !order.isEmpty()) {
-                sort = new Sort(new Sort.Order(Sort.Direction.DESC ,sortField).ignoreCase());
+            if (sort != null) {
+                purchaseList = purchases.findByCategory(categoryLimit, sort);
             } else {
-                sort = new Sort(new Sort.Order(sortField).ignoreCase());
-                model.addAttribute("desc", ",desc");
-                model.addAttribute(sortField, sortField);
+                purchaseList = purchases.findByCategory(categoryLimit);
             }
-            purchaseList = purchases.findAll(sort);
-        }
-        else {
-            purchaseList = purchases.findAll();
+            model.addAttribute("categoryLimit", categoryLimit);
+        } else {
+            if (sort != null) {
+                purchaseList = purchases.findAll(sort);
+            } else {
+                purchaseList = purchases.findAll();
+            }
+            model.addAttribute("categoryLimit", "All");
         }
         model.addAttribute("purchases", purchaseList);
         model.addAttribute("categories", purchases.findDistinctCategory());
         return "home";
+    }
+
+    private Sort getSort(Model model, String sortField, String order) {
+        Sort sort;
+        if (order != null && !order.isEmpty()) {
+            sort = new Sort(new Sort.Order(Sort.Direction.DESC, sortField).ignoreCase());
+        } else {
+            sort = new Sort(new Sort.Order(sortField).ignoreCase());
+            model.addAttribute("desc", ",desc");
+            model.addAttribute(sortField, sortField);
+        }
+        return sort;
     }
 
     private void loadCustomers() throws FileNotFoundException {
@@ -86,10 +101,10 @@ public class PurchasesController {
             String line = scanner.nextLine();
             String[] purchaseArr = line.split(",");
             purchases.save(new Purchase(purchaseArr[DATE],
-                                        purchaseArr[CREDIT_CARD],
-                                        Integer.parseInt(purchaseArr[CVV]),
-                                        purchaseArr[CATEGORY],
-                                        customers.findOne(Integer.parseInt(purchaseArr[CUSTOMER_ID]))));
+                    purchaseArr[CREDIT_CARD],
+                    Integer.parseInt(purchaseArr[CVV]),
+                    purchaseArr[CATEGORY],
+                    customers.findOne(Integer.parseInt(purchaseArr[CUSTOMER_ID]))));
 
         }
         scanner.close();

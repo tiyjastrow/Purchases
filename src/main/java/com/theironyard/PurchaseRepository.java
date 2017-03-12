@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface PurchaseRepository extends CrudRepository<Purchase, Integer> {
     List<Purchase> findByCategory(String category);
+    List<Purchase> findByCategory(String category, Sort sort);
     @Override
     List<Purchase> findAll();
 
