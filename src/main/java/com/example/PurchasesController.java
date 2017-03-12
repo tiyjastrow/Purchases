@@ -1,5 +1,6 @@
 package com.example;
 
+import com.samskivert.mustache.Mustache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,23 +61,29 @@ public class PurchasesController {
                 purchases.save(purchase);
             }
         }
-
-
-
     }
-
 
     @RequestMapping(value ="/", method = RequestMethod.GET)
-    public String home(Model model, String category){
-        List<Purchase> purchList;
-        if(category == null){
-            purchList = (List)purchases.findAll();
-        } else {
+    public String home(Model model, String category, String search){
+        List<Purchase> purchList = (List)purchases.findAll();
+        String filter = "Category";
+
+        if (search != null){
+            if(!search.isEmpty()){
+                Customer c = customers.findByNameContainingIgnoreCase(search);
+                if(c != null) {
+                    purchList = purchases.findByCustomerId(c.id);
+                } else {
+                    //TODO email
+                }
+            }
+        } else if(category != null){
             purchList = purchases.findByCategory(category);
+            filter = category;
         }
         model.addAttribute("purchases", purchList );
+        model.addAttribute("filtering", filter);
         return "home";
     }
-
 
 }
