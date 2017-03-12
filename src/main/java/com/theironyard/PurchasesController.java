@@ -40,9 +40,9 @@ public class PurchasesController {
         else if (sortField != null){
             Sort sort;
             if (order != null && !order.isEmpty()) {
-                sort = new Sort(Sort.Direction.DESC ,sortField);
+                sort = new Sort(new Sort.Order(Sort.Direction.DESC ,sortField).ignoreCase());
             } else {
-                sort = new Sort(sortField);
+                sort = new Sort(new Sort.Order(sortField).ignoreCase());
                 model.addAttribute("desc", ",desc");
                 model.addAttribute(sortField, sortField);
             }
