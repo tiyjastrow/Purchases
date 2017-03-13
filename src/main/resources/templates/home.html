@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.js"
+            integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+            crossorigin="anonymous">
+
+    </script>
+    <style>
+        .dropbtn {
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {background-color: #f1f1f1}
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+
+        /*modal*/
+        div#searchBox {
+            float: none;
+            text-align: center;
+            color: #777;
+            margin-top: 4em;
+        }
+
+        #searchform {
+            border-bottom: 1px solid #ccc;
+            padding: 8px 0 0;
+        }
+
+        #searchform input {
+            border: 0px;
+            background: transparent;
+            padding: 8px 10px 5px;
+            outline: none;
+        }
+
+        .mobile-form #searchform {
+            padding-top: 2.5px;
+            width: 215px;
+        }
+
+        div#searchBox #searchform {
+            border: 1px solid #ddd;
+            width: 238px;
+            padding-top: 1px;
+            display: inline-block;
+        }
+
+        div#searchBox #searchform input {
+            padding: 5px;
+            display: block;
+        }
+
+        #searchBox i.fa.fa-search {
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .sb-icon-search,
+        .sb-search-submit {
+            width: 30px;
+            height: 30px;
+            display: block;
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 0;
+            margin: 0;
+            line-height: 30px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .sb-search-submit {
+            background: #fff;
+            /* IE needs this */
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+            /* IE 8 */
+            filter: alpha(opacity=0);
+            /* IE 5-7 */
+            opacity: 0;
+            color: transparent;
+            border: none;
+            outline: none;
+            z-index: 100;
+        }
+
+        div#searchBox #searchform .sb-icon-search {
+            /* color: #fff; */
+            /* background: #3f91c3; */
+            z-index: 90;
+            /* font-size: 22px; */
+            font-family: 'FontAwesome';
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            -webkit-font-smoothing: antialiased;
+            top: -1px;
+        }
+
+        div#searchBox #searchform .sb-icon-search:before {
+            content: "\f002";
+        }
+
+        span#noEasy {
+            display: block;
+            /* overflow: hidden; */
+            position: relative;
+            width: 30px;
+            height: 30px;
+            float: left;
+            padding-left: 3px;
+        }
+
+        span#noEasy input {
+            width: 30px;
+            padding: 0 !important;
+        }
+
+        input#sbox {
+            line-height: 31px;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+        span#noEasy:hover {
+            color: #444;
+        }
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <div class="centered">
+    <h2 class="text-center">Purchase Project</h2>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <div id="searchBox" class="mobile-form">
+        <form action="/" class="search-form" name="search" id="searchform" method="get">
+        <span id="noEasy"><input class="sb-search-submit" type="submit" value="">
+<span class="sb-icon-search"></span></span>
+            <input id="sbox" name="search" onblur="if (this.placeholder == '') {this.placeholder = 'Search for a name';}" onfocus="if (this.placeholder == 'To search type + hit enter') {this.placeholder = '';}" placeholder="To search type + hit enter" type="text" x-webkit-speech="">
+        </form>
+    </div>
+
+    <div class="dropdown">
+        {{#filtering}}
+        <button class="dropbtn">{{.}}</button>
+        {{/filtering}}
+        <div class="dropdown-content">
+            <a href="/">All</a>
+            <a href="/?category=Furniture">Furniture</a>
+            <a href="/?category=Alcohol">Alcohol</a>
+            <a href="/?category=Toiletries">Toiletries</a>
+            <a href="/?category=Shoes">Shoes</a>
+            <a href="/?category=Food">Food</a>
+            <a href="/?category=Jewelry">Jewelry</a>
+        </div>
+    </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+
+            <th>Name</th>
+            <th>Email</th>
+
+            <th>Category</th>
+            <th>Credit Card</th>
+            <th>CVV</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        {{#purchases}}
+        <tbody>
+        <tr>
+            {{#customer}}
+            <td>{{name}}</td>
+            <td>{{email}}</td>
+            {{/customer}}
+            <td>{{category}}</td>
+            <td>{{creditCard}}</td>
+            <td>{{cvv}}</td>
+            <td>{{date}}</td>
+        </tr>
+        </tbody>
+        {{/purchases}}
+    </table>
+</div>
+</body>
+</html>
