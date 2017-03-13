@@ -73,8 +73,6 @@ public class PurchasesController {
                 Customer c = customers.findByNameContainingIgnoreCase(search);
                 if(c != null) {
                     purchList = purchases.findByCustomerId(c.id);
-                } else {
-                    //TODO email
                 }
             }
         } else if(category != null){

@@ -19,6 +19,7 @@
     </script>
     <style>
         .dropbtn {
+            text-align: center;
             background-color: #4CAF50;
             color: white;
             padding: 16px;
@@ -176,13 +177,14 @@
 </head>
 <body>
 <div class="container">
-    <h2>Purchase Project</h2>
+    <div class="centered">
+    <h2 class="text-center">Purchase Project</h2>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <div id="searchBox" class="mobile-form">
         <form action="/" class="search-form" name="search" id="searchform" method="get">
         <span id="noEasy"><input class="sb-search-submit" type="submit" value="">
 <span class="sb-icon-search"></span></span>
-            <input id="sbox" name="search" onblur="if (this.placeholder == '') {this.placeholder = 'To search type + hit enter';}" onfocus="if (this.placeholder == 'To search type + hit enter') {this.placeholder = '';}" placeholder="To search type + hit enter" type="text" x-webkit-speech="">
+            <input id="sbox" name="search" onblur="if (this.placeholder == '') {this.placeholder = 'Search for a name';}" onfocus="if (this.placeholder == 'To search type + hit enter') {this.placeholder = '';}" placeholder="To search type + hit enter" type="text" x-webkit-speech="">
         </form>
     </div>
 
@@ -200,7 +202,7 @@
             <a href="/?category=Jewelry">Jewelry</a>
         </div>
     </div>
-
+    </div>
     <table class="table table-hover">
         <thead>
         <tr>
