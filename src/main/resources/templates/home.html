@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GameTracker</title>
+</head>
+<body>
+
+<form action="/" method="get">
+    Find by category:
+    <select name="categoryLimit">
+        <option selected>All</option>
+        {{#categories}}
+        <option>{{.}}</option>
+        {{/categories}}
+    </select>
+    <button type="submit">Find</button>
+</form>
+
+<table>
+    <tr>
+        <th><a href="/?categoryLimit={{categoryLimit}}&sortField=Customer.name{{#Customer.name}}&order=desc{{/Customer.name}}">Name</a></th>
+        <th><a href="/?categoryLimit={{categoryLimit}}&sortField=Customer.email{{#Customer.email}}&order=desc{{/Customer.email}}">Email</a></th>
+        <th><a href="/?categoryLimit={{categoryLimit}}&sortField=category{{#category}}&order=desc{{/category}}">Category</a></th>
+        <th><a href="/?categoryLimit={{categoryLimit}}&sortField=creditCard{{#creditCard}}&order=desc{{/creditCard}}">Credit Card</a></th>
+        <th><a href="/?categoryLimit={{categoryLimit}}&sortField=cvv{{#cvv}}&order=desc{{/cvv}}">CVV</a></th>
+        <th><a href="/?categoryLimit={{categoryLimit}}&sortField=date{{#date}}&order=desc{{/date}}">Date</a></th>
+    </tr>
+    {{#purchases}}
+    <tr>
+        {{#customer}}
+        <td>{{name}}</td>
+        <td>{{email}}</td>
+        {{/customer}}
+        <td>{{category}}</td>
+        <td>{{creditCard}}</td>
+        <td>{{cvv}}</td>
+        <td>{{date}}</td>
+    </tr>
+    {{/purchases}}
+</table>
+
+</body>
+</html>
